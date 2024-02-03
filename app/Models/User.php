@@ -54,16 +54,5 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class);
     }
 
-    public function SelectDays()
-    {
-        return $this->hasMany(SelectDay::class, "professor_id");
-    }
-    public function Reservation()
-    {
-        return $this->hasMany(Reservation::class);
-    }
-    public function Professor()
-    {
-        return $this->hasMany(Reservation::class, "professor_id");
-    }
+
 }
