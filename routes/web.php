@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\News\NewsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,14 +21,12 @@ Route::get('/', function () {
 
 
 
-Route::match(['get', "post"], 'register', [
-    "uses" => "Auth\AuthController@Register",
-    "as" => "Register"
-]);
+Route::get('register', [AuthController::class, "PageRegister"])->name("PageRegister");
+Route::post('register', [AuthController::class, "Register"])->name("Register");
 
-Route::match(['get', "post"], 'login', [
-    "uses" => "Auth\AuthController@Login",
-    "as" => "Login"
-]);
+Route::get('login', [AuthController::class, "PageLogin"])->name("PageLogin");
+Route::post('login', [AuthController::class, "Login"])->name("Login");
+
+Route::get("new",[NewsController::class, "GetNews"])->name("news");
 
 
