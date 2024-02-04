@@ -36,13 +36,19 @@ class GetNews extends Command
     public function handle()
     {
         $newsapi = new NewsApi('8d05e3a60b2f4ba1a440f16a6b303040');
-        $sources = $newsapi->getSources('business', 'en', 'us');
+        $all_articles = $newsapi->getEverything(q:'apple', language:'en', page_size:9, page:2);
+//        dd($all_articles);
 
-        foreach($sources->sources as $source){
+        foreach($all_articles->articles as $article){
             $Post = new Post();
-            $Post->title = $source->name;
-            $Post->content = $source->description;
-            $Post->category = $source->category;
+
+            $Post->title = $article->title;
+            $Post->author = $article->author;
+            $Post->urlToImage = $article->urlToImage;
+            $Post->description = $article->description;
+            $Post->url = $article->url;
+            $Post->content = $article->content;
+
             $Post->save();
         }
     }
