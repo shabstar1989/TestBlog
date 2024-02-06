@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\PostAPIController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +23,6 @@ Route::middleware('auth:api')->group( function () {
 });
 
 
-Route::post('all-post', [PostAPIContoller::class, "GetAll"])->name('API.ShowAll');
+Route::post('all-post', [PostAPIController::class, "GetAll"])->name('API.ShowAll');
+Route::post('post', [PostAPIController::class, "GetPost"])->name('API.OnePost');
+Route::post('SearchPost', [PostAPIController::class, "SearchPost"])->name('API.SearchPost');
